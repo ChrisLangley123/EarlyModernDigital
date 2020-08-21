@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+<style>
+  #map {position: absolute; top: 0; bottom: 0; left: 0; right: 0}
+</style>
+#map {
+	height: 100px;
+	width: 100px;
+}
+</style>
+
+</head>
+<body>
+  <div id = "map"></div>
+
+  <script>
+
+  var map = L.map('map').setView( [19.51319789966427, -99.151611328125], 7.5);
+  
+L.tileLayer('https://api.maptiler.com/maps/bright/{z}/{x}/{y}.png?key=jEjQ0SRJEEIXFxcN0Rdh', {
+  attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
+}).addTo(map);
+
+var myIcon = L.marker ({
+  iconURL: 'https://leafletjs.com/examples/custom-icons/leaf-green.png',
+  iconSize: [38, 95],
+  iconAnchor: [22,94],
+})
+
+var marker1 = L.marker([19.197053439464852, -96.16333007812499]).addTo(map);
+var marker2 = L.marker([19.489896743079, -98.13812255859375]).addTo(map);
+var marker3 = L.marker([19.063415865107785, -98.29536437988281]).addTo(map);
+var marker4 = L.marker([19.489249440832413, -98.96141052246094]).addTo(map);
+var marker5 = L.marker([19.474360774988366, -98.98338317871094]).addTo(map);
+var marker6 = L.marker([19.465944836834538, -98.96965026855469]).addTo(map);
+var marker7 = L.marker([19.695607195577008, -98.75747680664062]).addTo(map);
+var marker8 = L.marker([19.47128577133278, -98.9564323425293]).addTo(map);
+var marker9 = L.marker([19.63224019048384, -101.59744262695311]).addTo(map);
+
+marker1.bindPopup("<b> Cortes lands at Veracruz </b><br>April 1519").openPopup();
+marker2.bindPopup("<b> Skirmishes with the Tlaxcalans </b><br> September 1519").openPopup();
+marker3.bindPopup("<b> Cholula massacre </b><br> October 1519").openPopup();
+marker4.bindPopup("<b> Cortss enters Tenochtitlan </b><br> 8 November 1519 <br>").openPopup();
+marker5.bindPopup("<b> Moctezuma under house arrest  </b><br> November 1519 - May 1520").openPopup();
+marker6.bindPopup("<b> Massacre of the Great Temple / Alvarado Massacre </b><br> 22 May 1520").openPopup();
+marker7.bindPopup("<b> Battle of Otumba </b><br> 14 July 1520").openPopup();
+marker9.bindPopup("<b> Surrender of the Tzintzuntzan </b><br> 1522").openPopup();
+marker8.bindPopup("<b> Fall of Tenochtitlan </b><br> 13 August 1521").openPopup();
+
+  </script>
+
+  </body>
+  </html>
