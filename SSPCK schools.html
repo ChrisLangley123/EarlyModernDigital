@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+      <title>SSPCK Schools, Jamie Kelly</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+<style>
+  #map {position: absolute; top: 0; bottom: 0; left: 0; right: 0}
+</style>
+</head>
+<body>
+  <div id = "map"></div>
+  <script>
+  var map = L.map('map').setView( [57.545312891475504, -5.20751953125], 8.5);
+  
+L.tileLayer('https://api.maptiler.com/maps/bright/{z}/{x}/{y}.png?key=jEjQ0SRJEEIXFxcN0Rdh', {
+  attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
+}).addTo(map);
+
+var geojson = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "schoolLabel": "Kirkton in Meikle Strath School",
+        "founderLabel": "",
+        "coords": "Point(-5.42827 57.424011)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.42827,
+          57.424011
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "schoolLabel": "Ullapool School",
+        "founderLabel": "",
+        "coords": "Point(-5.1577 57.899601)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.1577,
+          57.899601
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "schoolLabel": "Lochcarron School",
+        "founderLabel": "",
+        "coords": "Point(-5.50153 57.398041)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.50153,
+          57.398041
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "schoolLabel": "Bernera School",
+        "founderLabel": "",
+        "coords": "Point(-5.63383 57.22586)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.63383,
+          57.22586
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "schoolLabel": "Lochalsh School",
+        "founderLabel": "",
+        "coords": "Point(-5.714265 57.299822)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.714265,
+          57.299822
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "schoolLabel": "Nisburn School",
+        "founderLabel": "",
+        "coords": "Point(-5.714265 57.299822)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.714265,
+          57.299822
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "schoolLabel": "Gairloch School",
+        "founderLabel": "",
+        "coords": "Point(-5.689544677 57.727619216)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.689544677,
+          57.727619216
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "schoolLabel": "Kintail School",
+        "founderLabel": "",
+        "coords": "Point(-5.37574768 57.226671301)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.37574768,
+          57.226671301
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "schoolLabel": "Glen Shiel School",
+        "founderLabel": "",
+        "coords": "Point(-5.353431701 57.14369064)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.353431701,
+          57.14369064
+        ]
+      }
+    }
+  ]
+};
+
+L.geoJSON(geojson).addTo(map);
+
+function createPopup(feature, layer) {
+  // code here will run when a feature on the map is clicked.
+  layer.bindPopup('<b>'+feature.properties.schoolLabel +'</b><br>');
+   // show the clicked feature's attribute value in a popup
+  // some other code can go here, like adding the layer to a layer group so it can be shown on a control
+}
+ L.geoJSON(geojson, {
+    onEachFeature: createPopup // When each record of data is converted into a feature, call a function to add a popup
+  }).addTo(map);
+
+  </script>
+
+  </body>
+  </html>
