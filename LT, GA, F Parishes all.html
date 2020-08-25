@@ -1,0 +1,4256 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Mapping the Scottish Reformation</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OverlappingMarkerSpiderfier-Leaflet/0.2.6/oms.min.js"></script>
+
+<style>
+  #map {position: absolute; top: 0; bottom: 0; left: 0; right: 0}
+</style>
+</header>
+<body>
+  <div id = "map"></div>
+  <script>
+
+  var historic = L.tileLayer('https://nls.tileserver.com/nls/{z}/{x}/{y}.jpg', {
+attribution: '<a href="http://maps.nls.uk/projects/api/">NLS Historic Maps API</a>'
+}),
+modern = L.tileLayer('https://api.maptiler.com/maps/bright/{z}/{x}/{y}.png?key=jEjQ0SRJEEIXFxcN0Rdh', {
+  attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
+});
+
+var map = L.map('map', {
+    center: [55.94919982336744, -3.18328857421875],
+    zoom: 9,
+    layers: [historic, modern]
+});
+
+var baseMaps = {
+    "Historic": historic,
+    "Modern": modern
+};
+
+L.control.layers(baseMaps).addTo(map);
+
+  var kirkIcon = new L.Icon({
+  iconUrl: 'https://cdn2.iconfinder.com/data/icons/iconslandgps/PNG/256x256/Places/CatholicTemple.png',
+  iconSize: [40, 49],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
+
+var geojson = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Dolphinton",
+        "coords": "Point(-3.42426 55.70676)",
+        "partLabel": "Presbytery of Biggar",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.42426,
+          55.70676
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Kilmarnock",
+        "coords": "Point(-4.499845504 55.607723616)",
+        "partLabel": "Presbytery of Irvine",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.499845504,
+          55.607723616
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Hamilton",
+        "coords": "Point(-4.041016101 55.778081521)",
+        "partLabel": "Presbytery of Hamilton",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.041016101,
+          55.778081521
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Inverkeithing",
+        "coords": "Point(-3.396749496 56.033751226)",
+        "partLabel": "Presbytery of Dunfermline",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.396749496,
+          56.033751226
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Beith",
+        "coords": "Point(-4.636723995 55.75576179)",
+        "partLabel": "Presbytery of Irvine",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.636723995,
+          55.75576179
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Cupar",
+        "coords": "Point(-3.014116287 56.317488751)",
+        "partLabel": "Presbytery of Cupar",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.014116287,
+          56.317488751
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Anstruther Easter",
+        "coords": "Point(-2.700362205 56.224530311)",
+        "partLabel": "Presbytery of St Andrews",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.700362205,
+          56.224530311
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Cumbernauld",
+        "coords": "Point(-3.988895416 55.94804639)",
+        "partLabel": "Presbytery of Glasgow",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.988895416,
+          55.94804639
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Anstruther Wester",
+        "coords": "Point(-2.707915306 56.220688924)",
+        "partLabel": "Presbytery of St Andrews",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.707915306,
+          56.220688924
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Carmichael",
+        "coords": "Point(-3.712005615 55.627317551)",
+        "partLabel": "Presbytery of Lanark",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.712005615,
+          55.627317551
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Elie",
+        "coords": "Point(-2.821179628 56.190624539)",
+        "partLabel": "Presbytery of St Andrews",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.821179628,
+          56.190624539
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Ferry Port on Craig",
+        "coords": "Point(-2.880692481 56.448522732)",
+        "partLabel": "Presbytery of St Andrews",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.880692481,
+          56.448522732
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Auchtertool",
+        "coords": "Point(-3.258476257 56.10239617)",
+        "partLabel": "Presbytery of Kirkcaldy",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.258476257,
+          56.10239617
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Dalgety",
+        "coords": "Point(-3.357052803 56.038342547)",
+        "partLabel": "Presbytery of Dunfermline",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.357052803,
+          56.038342547
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Ayr",
+        "coords": "Point(-4.63713169 55.463455535)",
+        "partLabel": "Presbytery of Ayr",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.63713169,
+          55.463455535
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Dalkeith",
+        "coords": "Point(-3.068331944 55.893641944)",
+        "partLabel": "Presbytery of Dalkeith",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.068331944,
+          55.893641944
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Creich",
+        "coords": "Point(-3.088231086 56.379569271)",
+        "partLabel": "Presbytery of Cupar",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.088231086,
+          56.379569271
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Balmerino",
+        "coords": "Point(-3.036088943 56.414233738)",
+        "partLabel": "Presbytery of Cupar",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.036088943,
+          56.414233738
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Falkland",
+        "coords": "Point(-3.20903778 56.252553616)",
+        "partLabel": "Presbytery of Cupar",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.20903778,
+          56.252553616
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Carrington",
+        "coords": "Point(-3.090305555 55.832805555)",
+        "partLabel": "Presbytery of Dalkeith",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.090305555,
+          55.832805555
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Irvine",
+        "coords": "Point(-4.668674468 55.617818684)",
+        "partLabel": "Presbytery of Irvine",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.668674468,
+          55.617818684
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Blantyre",
+        "coords": "Point(-4.092149734 55.793706175)",
+        "partLabel": "Presbytery of Hamilton",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.092149734,
+          55.793706175
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Kingsbarns",
+        "coords": "Point(-2.659710645 56.299312791)",
+        "partLabel": "Presbytery of St Andrews",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.659710645,
+          56.299312791
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Kilbarchan",
+        "coords": "Point(-4.550786018 55.834698614)",
+        "partLabel": "Presbytery of Paisley",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.550786018,
+          55.834698614
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Currie",
+        "coords": "Point(-3.307993888 55.895063055)",
+        "partLabel": "Presbytery of Edinburgh",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.307993888,
+          55.895063055
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Cambusnethan",
+        "coords": "Point(-3.90433073 55.777236767)",
+        "partLabel": "Presbytery of Hamilton",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.90433073,
+          55.777236767
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Ceres",
+        "coords": "Point(-2.97029972 56.291853026)",
+        "partLabel": "Presbytery of Cupar",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.97029972,
+          56.291853026
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Heriot",
+        "coords": "Point(-2.972355 55.763815)",
+        "partLabel": "Presbytery of Dalkeith",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.972355,
+          55.763815
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Kinghorn",
+        "coords": "Point(-3.174490928 56.070741976)",
+        "partLabel": "Presbytery of Kirkcaldy",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.174490928,
+          56.070741976
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Haddington",
+        "coords": "Point(-2.783319444 55.956119444)",
+        "partLabel": "Presbytery of Haddington",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.783319444,
+          55.956119444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Kilmany",
+        "coords": "Point(-2.992658615 56.384303502)",
+        "partLabel": "Presbytery of Cupar",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.992658615,
+          56.384303502
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Glassford",
+        "coords": "Point(-4.028763771 55.699876312)",
+        "partLabel": "Presbytery of Hamilton",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.028763771,
+          55.699876312
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Drymen",
+        "coords": "Point(-4.453014135 56.06149462)",
+        "partLabel": "Presbytery of Dumbarton",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.453014135,
+          56.06149462
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Falkirk",
+        "coords": "Point(-3.784444444 56.000555555)",
+        "partLabel": "Presbytery of Linlithgow",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.784444444,
+          56.000555555
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Bathgate",
+        "coords": "Point(-3.643111111 55.902388888)",
+        "partLabel": "Presbytery of Linlithgow",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.643111111,
+          55.902388888
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Dunbar",
+        "coords": "Point(-2.522777777 55.998333333)",
+        "partLabel": "Presbytery of Dunbar",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.522777777,
+          55.998333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Dalziel",
+        "coords": "Point(-3.979223 55.787947)",
+        "partLabel": "Presbytery of Hamilton",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.979223,
+          55.787947
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Crail",
+        "coords": "Point(-2.628307342 56.26127839)",
+        "partLabel": "Presbytery of St Andrews",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.628307342,
+          56.26127839
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Auchtermuchty",
+        "coords": "Point(-3.233156204 56.292299582)",
+        "partLabel": "Presbytery of Cupar",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.233156204,
+          56.292299582
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Carnbee",
+        "coords": "Point(-2.757589817 56.249102491)",
+        "partLabel": "Presbytery of St Andrews",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.757589817,
+          56.249102491
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Dairsie",
+        "coords": "Point(-2.94965744 56.345562945)",
+        "partLabel": "Presbytery of Cupar",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.94965744,
+          56.345562945
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Dunfermline",
+        "coords": "Point(-3.454535007 56.066430014)",
+        "partLabel": "Presbytery of Dunfermline",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.454535007,
+          56.066430014
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Fintry",
+        "coords": "Point(-4.223706722 56.053227618)",
+        "partLabel": "Presbytery of Dumbarton",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.223706722,
+          56.053227618
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Craigie",
+        "coords": "Point(-4.493992 55.558964)",
+        "partLabel": "Presbytery of Ayr",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.493992,
+          55.558964
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Balfron",
+        "coords": "Point(-4.335522651 56.073592398)",
+        "partLabel": "Presbytery of Dumbarton",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.335522651,
+          56.073592398
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Auchinleck",
+        "coords": "Point(-4.292178153 55.466107423)",
+        "partLabel": "Presbytery of Ayr",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.292178153,
+          55.466107423
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Bolton",
+        "coords": "Point(-2.790388888 55.9205)",
+        "partLabel": "Presbytery of Haddington",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.790388888,
+          55.9205
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Bo'ness and Carriden",
+        "coords": "Point(-3.608888888 56.016944444)",
+        "partLabel": "Presbytery of Linlithgow",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.608888888,
+          56.016944444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Eaglesham",
+        "coords": "Point(-4.27303791 55.739638734)",
+        "partLabel": "Presbytery of Ayr",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.27303791,
+          55.739638734
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Dalry",
+        "coords": "Point(-4.72276926 55.707360541)",
+        "partLabel": "Presbytery of Irvine",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.72276926,
+          55.707360541
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Kilbirnie",
+        "coords": "Point(-4.685561656 55.754614677)",
+        "partLabel": "Presbytery of Irvine",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.685561656,
+          55.754614677
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Kinglassie",
+        "coords": "Point(-3.231225013 56.173033291)",
+        "partLabel": "Presbytery of Kirkcaldy",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.231225013,
+          56.173033291
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Crawford",
+        "coords": "Point(-3.652610778 55.468929421)",
+        "partLabel": "Presbytery of Lanark",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.652610778,
+          55.468929421
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Culross",
+        "coords": "Point(-3.627419471 56.055336471)",
+        "partLabel": "Presbytery of Dunfermline",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.627419471,
+          56.055336471
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Crichton",
+        "coords": "Point(-2.9825 55.847111111)",
+        "partLabel": "Presbytery of Dalkeith",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.9825,
+          55.847111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Dirleton",
+        "coords": "Point(-2.785 56.048055555)",
+        "partLabel": "Presbytery of Haddington",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.785,
+          56.048055555
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Carnwath",
+        "coords": "Point(-3.624908924 55.700505091)",
+        "partLabel": "Presbytery of Lanark",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.624908924,
+          55.700505091
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Avondale",
+        "coords": "Point(-4.1124 55.629)",
+        "partLabel": "Presbytery of Hamilton",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.1124,
+          55.629
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Inchinnan",
+        "coords": "Point(-4.43296194 55.889320147)",
+        "partLabel": "Presbytery of Paisley",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.43296194,
+          55.889320147
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Kettle",
+        "coords": "Point(-3.114897608 56.262070911)",
+        "partLabel": "Presbytery of St Andrews",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.114897608,
+          56.262070911
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Borthwick",
+        "coords": "Point(-3.011194444 55.825111111)",
+        "partLabel": "Presbytery of Dalkeith",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.011194444,
+          55.825111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Cockburnspath",
+        "coords": "Point(-2.360194444 55.932888888)",
+        "partLabel": "Presbytery of Dunbar",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.360194444,
+          55.932888888
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Kemback",
+        "coords": "Point(-2.941052913 56.32511603)",
+        "partLabel": "Presbytery of St Andrews",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.941052913,
+          56.32511603
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Auchterderran",
+        "coords": "Point(-3.263969421 56.147844551)",
+        "partLabel": "Presbytery of Kirkcaldy",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.263969421,
+          56.147844551
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Covington",
+        "coords": "Point(-3.629694 55.642617)",
+        "partLabel": "Presbytery of Lanark",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.629694,
+          55.642617
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Dalserf",
+        "coords": "Point(-3.912999629 55.734806559)",
+        "partLabel": "Presbytery of Hamilton",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.912999629,
+          55.734806559
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Dalrymple",
+        "coords": "Point(-4.594602584 55.396366153)",
+        "partLabel": "Presbytery of Ayr",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.594602584,
+          55.396366153
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Dumbarton",
+        "coords": "Point(-4.55887556 55.943107868)",
+        "partLabel": "Presbytery of Dumbarton",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.55887556,
+          55.943107868
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Culter",
+        "coords": "Point(-3.552361 55.588781)",
+        "partLabel": "Presbytery of Biggar",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.552361,
+          55.588781
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Ecclesmachan",
+        "coords": "Point(-3.509111111 55.946694444)",
+        "partLabel": "Presbytery of Linlithgow",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.509111111,
+          55.946694444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Ardrossan",
+        "coords": "Point(-4.811754226 55.64357175)",
+        "partLabel": "Presbytery of Irvine",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.811754226,
+          55.64357175
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Dreghorn",
+        "coords": "Point(-4.615523815 55.608075108)",
+        "partLabel": "Presbytery of Irvine",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.615523815,
+          55.608075108
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Dalmeny",
+        "coords": "Point(-3.37 55.983055555)",
+        "partLabel": "Presbytery of Linlithgow",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.37,
+          55.983055555
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Dunino",
+        "coords": "Point(-2.747268676 56.287583695)",
+        "partLabel": "Presbytery of St Andrews",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.747268676,
+          56.287583695
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Burntisland",
+        "coords": "Point(-3.23641777 56.062213406)",
+        "partLabel": "Presbytery of Kirkcaldy",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.23641777,
+          56.062213406
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Beath",
+        "coords": "Point(-3.34490776 56.112112284)",
+        "partLabel": "Presbytery of Dunfermline",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.34490776,
+          56.112112284
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Gladsmuir",
+        "coords": "Point(-2.866694444 55.949416666)",
+        "partLabel": "Presbytery of Haddington",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.866694444,
+          55.949416666
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Carluke",
+        "coords": "Point(-3.836588859 55.733864215)",
+        "partLabel": "Presbytery of Lanark",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.836588859,
+          55.733864215
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Kilmaurs",
+        "coords": "Point(-4.522461891 55.63499735)",
+        "partLabel": "Presbytery of Irvine",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.522461891,
+          55.63499735
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Carnock",
+        "coords": "Point(-3.539260625 56.084219738)",
+        "partLabel": "Presbytery of Dunfermline",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.539260625,
+          56.084219738
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Baldernock",
+        "coords": "Point(-4.280558824 55.94744563)",
+        "partLabel": "Presbytery of Dumbarton",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.280558824,
+          55.94744563
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Fenwick",
+        "coords": "Point(-4.441974163 55.660448629)",
+        "partLabel": "Presbytery of Irvine",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.441974163,
+          55.660448629
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Biggar",
+        "coords": "Point(-3.523865 55.622138)",
+        "partLabel": "Presbytery of Biggar",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.523865,
+          55.622138
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Cambuslang",
+        "coords": "Point(-4.166629314 55.815220533)",
+        "partLabel": "Presbytery of Hamilton",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.166629314,
+          55.815220533
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Killearn",
+        "coords": "Point(-4.372901916 56.042657652)",
+        "partLabel": "Presbytery of Dumbarton",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.372901916,
+          56.042657652
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Kilconquhar",
+        "coords": "Point(-2.831221818 56.208398673)",
+        "partLabel": "Presbytery of St Andrews",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.831221818,
+          56.208398673
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Eddleston",
+        "coords": "Point(-3.206944444 55.711944444)",
+        "partLabel": "Presbytery of Peebles",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.206944444,
+          55.711944444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Kennoway",
+        "coords": "Point(-3.048448562 56.211907166)",
+        "partLabel": "Presbytery of Kirkcaldy",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.048448562,
+          56.211907166
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Dunlop",
+        "coords": "Point(-4.534553289 55.712238422)",
+        "partLabel": "Presbytery of Irvine",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.534553289,
+          55.712238422
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Kilrenny",
+        "coords": "Point(-2.686843872 56.234299058)",
+        "partLabel": "Presbytery of St Andrews",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.686843872,
+          56.234299058
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Denny",
+        "coords": "Point(-3.906944444 56.023333333)",
+        "partLabel": "Presbytery of Linlithgow",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.906944444,
+          56.023333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Kilwinning",
+        "coords": "Point(-4.698350429 55.65322176)",
+        "partLabel": "Presbytery of Irvine",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.698350429,
+          55.65322176
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Athelstaneford",
+        "coords": "Point(-2.7485 55.986388888)",
+        "partLabel": "Presbytery of Haddington",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.7485,
+          55.986388888
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Carstairs",
+        "coords": "Point(-3.690075874 55.696544826)",
+        "partLabel": "Presbytery of Lanark",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.690075874,
+          55.696544826
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Cambuslang",
+        "coords": "Point(-4.166629314 55.815220533)",
+        "partLabel": "Presbytery of Glasgow",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.166629314,
+          55.815220533
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Humbie",
+        "coords": "Point(-2.867388888 55.854388888)",
+        "partLabel": "Presbytery of Haddington",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.867388888,
+          55.854388888
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Innerleithen",
+        "coords": "Point(-3.059 55.618388888)",
+        "partLabel": "Presbytery of Peebles",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.059,
+          55.618388888
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Dalmellington",
+        "coords": "Point(-4.39323306 55.325836325)",
+        "partLabel": "Presbytery of Ayr",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.39323306,
+          55.325836325
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Collessie",
+        "coords": "Point(-3.155350685 56.3059676)",
+        "partLabel": "Presbytery of Cupar",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.155350685,
+          56.3059676
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Covington",
+        "coords": "Point(-3.629694 55.642617)",
+        "partLabel": "Presbytery of Biggar",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.629694,
+          55.642617
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Old Tolbooth, Edinburgh",
+        "coords": "Point(-3.19173 55.9494)",
+        "partLabel": "Presbytery of Edinburgh",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.19173,
+          55.9494
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Corstorphine Collegiate Church",
+        "coords": "Point(-3.28187 55.9414)",
+        "partLabel": "Presbytery of Edinburgh",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.28187,
+          55.9414
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Cranston",
+        "coords": "Point(-2.991866666 55.8846)",
+        "partLabel": "Presbytery of Dalkeith",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.991866666,
+          55.8846
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Cranston",
+        "coords": "Point(-2.986 55.8792)",
+        "partLabel": "Presbytery of Dalkeith",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.986,
+          55.8792
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "New Monkland",
+        "coords": "Point(-4.068281 55.860564)",
+        "partLabel": "Presbytery of Hamilton",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.068281,
+          55.860564
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Houston",
+        "coords": "Point(-4.555 55.873)",
+        "partLabel": "Presbytery of Paisley",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.555,
+          55.873
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Dunbog",
+        "coords": "Point(-3.15 56.3333)",
+        "partLabel": "Presbytery of Cupar",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.15,
+          56.3333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Old Monkland",
+        "coords": "Point(-4.07828 55.859)",
+        "partLabel": "Presbytery of Hamilton",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.07828,
+          55.859
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Trinity College Kirk",
+        "coords": "Point(-3.186111111 55.952777777)",
+        "partLabel": "Presbytery of Edinburgh",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.186111111,
+          55.952777777
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Manor",
+        "coords": "Point(-3.2401353 55.629286)",
+        "partLabel": "Presbytery of Peebles",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2401353,
+          55.629286
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Dunsyre",
+        "coords": "Point(-3.483305555 55.716694444)",
+        "partLabel": "Presbytery of Lanark",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.483305555,
+          55.716694444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Newton",
+        "coords": "Point(-3.069835 55.917035)",
+        "partLabel": "Presbytery of Dalkeith",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.069835,
+          55.917035
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Cramond",
+        "coords": "Point(-3.3 55.967219444)",
+        "partLabel": "Presbytery of Edinburgh",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.3,
+          55.967219444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Cockpen",
+        "coords": "Point(-3.089 55.8618)",
+        "partLabel": "Presbytery of Dalkeith",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.089,
+          55.8618
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Penicuik",
+        "coords": "Point(-3.22 55.826111111)",
+        "partLabel": "Presbytery of Dalkeith",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.22,
+          55.826111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "East Calder, St Cuthbert's Church And Graveyard",
+        "coords": "Point(-3.46603 55.8947)",
+        "partLabel": "Presbytery of Edinburgh",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.46603,
+          55.8947
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Cameron",
+        "coords": "Point(-2.834478 56.294437)",
+        "partLabel": "Presbytery of St Andrews",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.834478,
+          56.294437
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Rutherglen",
+        "coords": "Point(-4.218664169 55.828094516)",
+        "partLabel": "Presbytery of Glasgow",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.218664169,
+          55.828094516
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Muckhart",
+        "coords": "Point(-3.60733509 56.193119861)",
+        "partLabel": "Presbytery of Dunfermline",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.60733509,
+          56.193119861
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Forgan",
+        "coords": "Point(-2.9321 56.4236)",
+        "partLabel": "Presbytery of St Andrews",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.9321,
+          56.4236
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Kirkcaldy",
+        "coords": "Point(-3.160006999 56.110018501)",
+        "partLabel": "Presbytery of Kirkcaldy",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.160006999,
+          56.110018501
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Neilston",
+        "coords": "Point(-4.431138038 55.781062151)",
+        "partLabel": "Presbytery of Paisley",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.431138038,
+          55.781062151
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Loudoun",
+        "coords": "Point(-4.329 55.608)",
+        "partLabel": "Presbytery of Irvine",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.329,
+          55.608
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Colinton",
+        "coords": "Point(-3.25 55.9083)",
+        "partLabel": "Presbytery of Edinburgh",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.25,
+          55.9083
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Buchanan",
+        "coords": "Point(-4.53733 56.0833)",
+        "partLabel": "Presbytery of Dumbarton",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.53733,
+          56.0833
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Moonzie",
+        "coords": "Point(-3.062 56.345)",
+        "partLabel": "Presbytery of Cupar",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.062,
+          56.345
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Aberdour",
+        "coords": "Point(-3.300962448 56.053251582)",
+        "partLabel": "Presbytery of Dunfermline",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.300962448,
+          56.053251582
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Douglas",
+        "coords": "Point(-3.84450674 55.558447141)",
+        "partLabel": "Presbytery of Lanark",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.84450674,
+          55.558447141
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Stenton",
+        "coords": "Point(-2.6 55.95)",
+        "partLabel": "Presbytery of Dunbar",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.6,
+          55.95
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Dunsyre",
+        "coords": "Point(-3.483305555 55.716694444)",
+        "partLabel": "Presbytery of Biggar",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.483305555,
+          55.716694444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Flisk",
+        "coords": "Point(-3.09518 56.3895)",
+        "partLabel": "Presbytery of Cupar",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.09518,
+          56.3895
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Tron Kirk",
+        "coords": "Point(-3.187777777 55.95)",
+        "partLabel": "Presbytery of Edinburgh",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.187777777,
+          55.95
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Paisley",
+        "coords": "Point(-4.419851303 55.844626753)",
+        "partLabel": "Presbytery of Paisley",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.419851303,
+          55.844626753
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Scoonie",
+        "coords": "Point(-2.994825839 56.203994702)",
+        "partLabel": "Presbytery of Kirkcaldy",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.994825839,
+          56.203994702
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Broughton, Glenholm and Kilbucho",
+        "coords": "Point(-3.4082247 55.606846)",
+        "partLabel": "Presbytery of Peebles",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.4082247,
+          55.606846
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Largo",
+        "coords": "Point(-2.941 56.214)",
+        "partLabel": "Presbytery of St Andrews",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.941,
+          56.214
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "New Kilpatrick",
+        "coords": "Point(-4.3145 55.9197)",
+        "partLabel": "Presbytery of Dumbarton",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.3145,
+          55.9197
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Aberlady",
+        "coords": "Point(-2.86 56.01)",
+        "partLabel": "Presbytery of Haddington",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.86,
+          56.01
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Galston",
+        "coords": "Point(-4.3798 55.6004)",
+        "partLabel": "Presbytery of Ayr",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.3798,
+          55.6004
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Drumelzier",
+        "coords": "Point(-3.372611111 55.593888888)",
+        "partLabel": "Presbytery of Peebles",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.372611111,
+          55.593888888
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Dysart Parish Church",
+        "coords": "Point(-3.12518 56.1256)",
+        "partLabel": "Presbytery of Kirkcaldy",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.12518,
+          56.1256
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Crawfordjohn",
+        "coords": "Point(-3.774307966 55.495387981)",
+        "partLabel": "Presbytery of Lanark",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.774307966,
+          55.495387981
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Straiton",
+        "coords": "Point(-4.55307126 55.311508285)",
+        "partLabel": "Presbytery of Ayr",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.55307126,
+          55.311508285
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "The Parish Church of St Cuthbert",
+        "coords": "Point(-3.20545 55.9496)",
+        "partLabel": "Presbytery of Edinburgh",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.20545,
+          55.9496
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Whitekirk and Tyninghame",
+        "coords": "Point(-2.651388888 56.025)",
+        "partLabel": "Presbytery of Dunbar",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.651388888,
+          56.025
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Whitekirk and Tyninghame",
+        "coords": "Point(-2.6486 56.0257)",
+        "partLabel": "Presbytery of Dunbar",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.6486,
+          56.0257
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Duddingston Kirk",
+        "coords": "Point(-3.14914 55.9412)",
+        "partLabel": "Presbytery of Edinburgh",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.14914,
+          55.9412
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Duddingston Kirk",
+        "coords": "Point(-3.149116666 55.941172222)",
+        "partLabel": "Presbytery of Edinburgh",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.149116666,
+          55.941172222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Crombie Old Parish Church",
+        "coords": "Point(-3.5617828 56.0528)",
+        "partLabel": "Presbytery of Dunfermline",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.5617828,
+          56.0528
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Symington",
+        "coords": "Point(-3.594761 55.599531)",
+        "partLabel": "Presbytery of Biggar",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.594761,
+          55.599531
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Lyne",
+        "coords": "Point(-3.271146944 55.656268055)",
+        "partLabel": "Presbytery of Peebles",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.271146944,
+          55.656268055
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Newburn",
+        "coords": "Point(-2.898 56.224)",
+        "partLabel": "Presbytery of St Andrews",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.898,
+          56.224
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Campsie",
+        "coords": "Point(-4.240833333 56.017777777)",
+        "partLabel": "Presbytery of Glasgow",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.240833333,
+          56.017777777
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Spott",
+        "coords": "Point(-2.52587 55.970703)",
+        "partLabel": "Presbytery of Dunbar",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.52587,
+          55.970703
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Cults",
+        "coords": "Point(-3.046 56.268)",
+        "partLabel": "Presbytery of Cupar",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.046,
+          56.268
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Barnweill Church",
+        "coords": "Point(-4.52894 55.5367)",
+        "partLabel": "Presbytery of Ayr",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.52894,
+          55.5367
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Renfrew",
+        "coords": "Point(-4.389381408 55.877959031)",
+        "partLabel": "Presbytery of Paisley",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.389381408,
+          55.877959031
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "South Leith Parish Church",
+        "coords": "Point(-3.17055 55.9721)",
+        "partLabel": "Presbytery of Edinburgh",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.17055,
+          55.9721
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Oldhamstocks",
+        "coords": "Point(-2.408888888 55.926111111)",
+        "partLabel": "Presbytery of Dunbar",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.408888888,
+          55.926111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Glencorse",
+        "coords": "Point(-3.2042 55.8507)",
+        "partLabel": "Presbytery of Dalkeith",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2042,
+          55.8507
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "St Quivox Parish Church",
+        "coords": "Point(-4.57289 55.4833)",
+        "partLabel": "Presbytery of Ayr",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.57289,
+          55.4833
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Kirk of the Canongate",
+        "coords": "Point(-3.179559057 55.951719876)",
+        "partLabel": "Presbytery of Edinburgh",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.179559057,
+          55.951719876
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Abdie",
+        "coords": "Point(-3.2038021 56.336501)",
+        "partLabel": "Presbytery of Cupar",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.2038021,
+          56.336501
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Liberton Parish Church, Edinburgh",
+        "coords": "Point(-3.16124 55.9133)",
+        "partLabel": "Presbytery of Edinburgh",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.16124,
+          55.9133
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Shotts",
+        "coords": "Point(-3.794016838 55.818499705)",
+        "partLabel": "Presbytery of Hamilton",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.794016838,
+          55.818499705
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "St Margaret's Chapel",
+        "coords": "Point(-3.200092358 55.948691147)",
+        "partLabel": "Presbytery of Edinburgh",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.200092358,
+          55.948691147
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Stair",
+        "coords": "Point(-4.471414089 55.479801954)",
+        "partLabel": "Presbytery of Ayr",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.471414089,
+          55.479801954
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Torryburn",
+        "coords": "Point(-3.564398288 56.057636906)",
+        "partLabel": "Presbytery of Dunfermline",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.564398288,
+          56.057636906
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Cadder",
+        "coords": "Point(-4.216518402 55.923648047)",
+        "partLabel": "Presbytery of Glasgow",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.216518402,
+          55.923648047
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Bonhill",
+        "coords": "Point(-4.574067592 55.982490377)",
+        "partLabel": "Presbytery of Dumbarton",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.574067592,
+          55.982490377
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Inveresk",
+        "coords": "Point(-3.046805555 55.936611111)",
+        "partLabel": "Presbytery of Dalkeith",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.046805555,
+          55.936611111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Skirling",
+        "coords": "Point(-3.46882 55.63664)",
+        "partLabel": "Presbytery of Peebles",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.46882,
+          55.63664
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Luss",
+        "coords": "Point(-4.636681079 56.10037965)",
+        "partLabel": "Presbytery of Dumbarton",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.636681079,
+          56.10037965
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Eastwood",
+        "coords": "Point(-4.301469326 55.817101268)",
+        "partLabel": "Presbytery of Paisley",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.301469326,
+          55.817101268
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Innerwick",
+        "coords": "Point(-2.450388888 55.957305555)",
+        "partLabel": "Presbytery of Dunbar",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.450388888,
+          55.957305555
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "West Kilbride",
+        "coords": "Point(-4.85494852 55.695704351)",
+        "partLabel": "Presbytery of Irvine",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.85494852,
+          55.695704351
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Lesmahagow",
+        "coords": "Point(-3.886510133 55.637825414)",
+        "partLabel": "Presbytery of Lanark",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.886510133,
+          55.637825414
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Kirknewton",
+        "coords": "Point(-3.419166666 55.887777777)",
+        "partLabel": "Presbytery of Edinburgh",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.419166666,
+          55.887777777
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Govan",
+        "coords": "Point(-4.312992095 55.86463798)",
+        "partLabel": "Presbytery of Glasgow",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.312992095,
+          55.86463798
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Tweedsmuir",
+        "coords": "Point(-3.4 55.5)",
+        "partLabel": "Presbytery of Peebles",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.4,
+          55.5
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Leuchars",
+        "coords": "Point(-2.883417606 56.38139888)",
+        "partLabel": "Presbytery of St Andrews",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.883417606,
+          56.38139888
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Muirkirk",
+        "coords": "Point(-4.066776037 55.522654767)",
+        "partLabel": "Presbytery of Ayr",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.066776037,
+          55.522654767
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Leslie",
+        "coords": "Point(-3.215088844 56.201810432)",
+        "partLabel": "Presbytery of Kirkcaldy",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.215088844,
+          56.201810432
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "St Monance",
+        "coords": "Point(-2.770807743 56.203374048)",
+        "partLabel": "Presbytery of St Andrews",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.770807743,
+          56.203374048
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Monkton and Prestwick",
+        "coords": "Point(-4.602874517 55.516374388)",
+        "partLabel": "Presbytery of Ayr",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.602874517,
+          55.516374388
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Temple",
+        "coords": "Point(-3.094355 55.816861944)",
+        "partLabel": "Presbytery of Dalkeith",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.094355,
+          55.816861944
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Mearns",
+        "coords": "Point(-4.324858188 55.766784433)",
+        "partLabel": "Presbytery of Paisley",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.324858188,
+          55.766784433
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Lasswade",
+        "coords": "Point(-3.116694444 55.883305555)",
+        "partLabel": "Presbytery of Dalkeith",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.116694444,
+          55.883305555
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Livingston",
+        "coords": "Point(-3.515833333 55.883333333)",
+        "partLabel": "Presbytery of Linlithgow",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.515833333,
+          55.883333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Tarbolton",
+        "coords": "Point(-4.486777782 55.513270271)",
+        "partLabel": "Presbytery of Ayr",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.486777782,
+          55.513270271
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Newbattle",
+        "coords": "Point(-3.0775 55.881694444)",
+        "partLabel": "Presbytery of Dalkeith",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.0775,
+          55.881694444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Carmunnock",
+        "coords": "Point(-4.235497713 55.790123314)",
+        "partLabel": "Presbytery of Hamilton",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.235497713,
+          55.790123314
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "East Kilbride",
+        "coords": "Point(-4.178946018 55.766120507)",
+        "partLabel": "Presbytery of Hamilton",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.178946018,
+          55.766120507
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Kirkurd",
+        "coords": "Point(-3.388888888 55.684166666)",
+        "partLabel": "Presbytery of Peebles",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.388888888,
+          55.684166666
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Saline",
+        "coords": "Point(-3.572455644 56.111771304)",
+        "partLabel": "Presbytery of Dunfermline",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.572455644,
+          56.111771304
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Kirknewton",
+        "coords": "Point(-3.419166666 55.887777777)",
+        "partLabel": "Presbytery of Linlithgow",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.419166666,
+          55.887777777
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Muiravonside",
+        "coords": "Point(-3.67477 55.9743)",
+        "partLabel": "Presbytery of Linlithgow",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.67477,
+          55.9743
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Linlithgow",
+        "coords": "Point(-3.610555555 55.975277777)",
+        "partLabel": "Presbytery of Linlithgow",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.610555555,
+          55.975277777
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Whittingehame",
+        "coords": "Point(-2.63 55.95)",
+        "partLabel": "Presbytery of Dunbar",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.63,
+          55.95
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Old Kilpatrick",
+        "coords": "Point(-4.463431835 55.927146487)",
+        "partLabel": "Presbytery of Dumbarton",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.463431835,
+          55.927146487
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Pittenweem",
+        "coords": "Point(-2.728922367 56.214043132)",
+        "partLabel": "Presbytery of St Andrews",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.728922367,
+          56.214043132
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Dundonald",
+        "coords": "Point(-4.593572616 55.576021791)",
+        "partLabel": "Presbytery of Ayr",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.593572616,
+          55.576021791
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Strathmiglo",
+        "coords": "Point(-3.266941308 56.277935752)",
+        "partLabel": "Presbytery of Cupar",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.266941308,
+          56.277935752
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Mid Calder",
+        "coords": "Point(-3.48258 55.8901)",
+        "partLabel": "Presbytery of Edinburgh",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.48258,
+          55.8901
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Carmunnock",
+        "coords": "Point(-4.235497713 55.790123314)",
+        "partLabel": "Presbytery of Glasgow",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.235497713,
+          55.790123314
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Wiston",
+        "coords": "Point(-3.653640747 55.567960389)",
+        "partLabel": "Presbytery of Lanark",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.653640747,
+          55.567960389
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Skirling",
+        "coords": "Point(-3.46882 55.63664)",
+        "partLabel": "Presbytery of Biggar",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.46882,
+          55.63664
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Ratho",
+        "coords": "Point(-3.383608333 55.920275)",
+        "partLabel": "Presbytery of Edinburgh",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.383608333,
+          55.920275
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Lanark",
+        "coords": "Point(-3.780090808 55.673652073)",
+        "partLabel": "Presbytery of Lanark",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.780090808,
+          55.673652073
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Symington",
+        "coords": "Point(-4.561772346 55.55046103)",
+        "partLabel": "Presbytery of Ayr",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.561772346,
+          55.55046103
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Lochwinnoch",
+        "coords": "Point(-4.629535675 55.794960701)",
+        "partLabel": "Presbytery of Paisley",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.629535675,
+          55.794960701
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Mid Calder",
+        "coords": "Point(-3.48258 55.8901)",
+        "partLabel": "Presbytery of Linlithgow",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.48258,
+          55.8901
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Ormiston",
+        "coords": "Point(-2.943111111 55.912194444)",
+        "partLabel": "Presbytery of Dalkeith",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.943111111,
+          55.912194444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Logie",
+        "coords": "Point(-2.965718507 56.371982582)",
+        "partLabel": "Presbytery of Cupar",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.965718507,
+          56.371982582
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Kilsyth",
+        "coords": "Point(-4.070048332 55.974734748)",
+        "partLabel": "Presbytery of Glasgow",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.070048332,
+          55.974734748
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Newlands",
+        "coords": "Point(-3.336111111 55.706111111)",
+        "partLabel": "Presbytery of Peebles",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.336111111,
+          55.706111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Mauchline",
+        "coords": "Point(-4.380068778 55.515469299)",
+        "partLabel": "Presbytery of Ayr",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.380068778,
+          55.515469299
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Prestonkirk",
+        "coords": "Point(-2.655555555 55.991388888)",
+        "partLabel": "Presbytery of Dunbar",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.655555555,
+          55.991388888
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Stewarton",
+        "coords": "Point(-4.516968727 55.679447595)",
+        "partLabel": "Presbytery of Irvine",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.516968727,
+          55.679447595
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Coylton",
+        "coords": "Point(-4.517590999 55.445009027)",
+        "partLabel": "Presbytery of Ayr",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.517590999,
+          55.445009027
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Peebles",
+        "coords": "Point(-3.18 55.65)",
+        "partLabel": "Presbytery of Peebles",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.18,
+          55.65
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Kirkmichael (Ayrshire)",
+        "coords": "Point(-4.615974426 55.344423922)",
+        "partLabel": "Presbytery of Ayr",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.615974426,
+          55.344423922
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "New Cumnock",
+        "coords": "Point(-4.184997081 55.394163521)",
+        "partLabel": "Presbytery of Ayr",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.184997081,
+          55.394163521
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "North Berwick",
+        "coords": "Point(-2.716944444 56.058055555)",
+        "partLabel": "Presbytery of Haddington",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.716944444,
+          56.058055555
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Stevenston",
+        "coords": "Point(-4.755105972 55.640059864)",
+        "partLabel": "Presbytery of Irvine",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.755105972,
+          55.640059864
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Ochiltree",
+        "coords": "Point(-4.365563392 55.460633145)",
+        "partLabel": "Presbytery of Ayr",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.365563392,
+          55.460633145
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Maybole",
+        "coords": "Point(-4.681549072 55.354440277)",
+        "partLabel": "Presbytery of Ayr",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.681549072,
+          55.354440277
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Strathblane",
+        "coords": "Point(-4.303765296 55.985599395)",
+        "partLabel": "Presbytery of Dumbarton",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.303765296,
+          55.985599395
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Tranent",
+        "coords": "Point(-2.954194444 55.944694444)",
+        "partLabel": "Presbytery of Haddington",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.954194444,
+          55.944694444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Walston",
+        "coords": "Point(-3.498373 55.694847)",
+        "partLabel": "Presbytery of Biggar",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.498373,
+          55.694847
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Libberton",
+        "coords": "Point(-3.581648 55.654385)",
+        "partLabel": "Presbytery of Biggar",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.581648,
+          55.654385
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "St Andrews and St Leonards",
+        "coords": "Point(-2.80011624 56.340293173)",
+        "partLabel": "Presbytery of St Andrews",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.80011624,
+          56.340293173
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Stonehouse",
+        "coords": "Point(-3.985698223 55.696671802)",
+        "partLabel": "Presbytery of Hamilton",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.985698223,
+          55.696671802
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Monimail",
+        "coords": "Point(-3.135373592 56.31472185)",
+        "partLabel": "Presbytery of Cupar",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.135373592,
+          56.31472185
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Cardross",
+        "coords": "Point(-4.648418426 55.961356837)",
+        "partLabel": "Presbytery of Dumbarton",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.648418426,
+          55.961356837
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Cathcart",
+        "coords": "Point(-4.259519577 55.813834035)",
+        "partLabel": "Presbytery of Glasgow",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.259519577,
+          55.813834035
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Newburgh",
+        "coords": "Point(-3.239207267 56.35096129)",
+        "partLabel": "Presbytery of Cupar",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.239207267,
+          56.35096129
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "West Linton",
+        "coords": "Point(-3.355388888 55.752611111)",
+        "partLabel": "Presbytery of Peebles",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.355388888,
+          55.752611111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Saltoun",
+        "coords": "Point(-2.86426 55.9061)",
+        "partLabel": "Presbytery of Haddington",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.86426,
+          55.9061
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Old Cumnock",
+        "coords": "Point(-4.264894723 55.453132151)",
+        "partLabel": "Presbytery of Ayr",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.264894723,
+          55.453132151
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Prestonpans",
+        "coords": "Point(-2.983777777 55.959694444)",
+        "partLabel": "Presbytery of Haddington",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.983777777,
+          55.959694444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Lamington and Wandel",
+        "coords": "Point(-3.616219 55.562191)",
+        "partLabel": "Presbytery of Biggar",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.616219,
+          55.562191
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Uphall",
+        "coords": "Point(-3.507694444 55.930888888)",
+        "partLabel": "Presbytery of Linlithgow",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.507694444,
+          55.930888888
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Morham",
+        "coords": "Point(-2.710833333 55.941611111)",
+        "partLabel": "Presbytery of Haddington",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.710833333,
+          55.941611111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Abercorn",
+        "coords": "Point(-3.466666666 55.983333333)",
+        "partLabel": "Presbytery of Linlithgow",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.466666666,
+          55.983333333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Slamannan",
+        "coords": "Point(-3.833333333 55.937777777)",
+        "partLabel": "Presbytery of Linlithgow",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.833333333,
+          55.937777777
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Riccarton",
+        "coords": "Point(-4.496626853 55.595613377)",
+        "partLabel": "Presbytery of Ayr",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.496626853,
+          55.595613377
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Fala and Soutra",
+        "coords": "Point(-2.883305555 55.833330555)",
+        "partLabel": "Presbytery of Dalkeith",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.883305555,
+          55.833330555
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Torphichen",
+        "coords": "Point(-3.650275 55.933305555)",
+        "partLabel": "Presbytery of Linlithgow",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.650275,
+          55.933305555
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Kilmaronock",
+        "coords": "Point(-4.529607295 56.040715914)",
+        "partLabel": "Presbytery of Dumbarton",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.529607295,
+          56.040715914
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Kirkintilloch",
+        "coords": "Point(-4.13873434 55.934731367)",
+        "partLabel": "Presbytery of Glasgow",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.13873434,
+          55.934731367
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Markinch",
+        "coords": "Point(-3.134150505 56.204865989)",
+        "partLabel": "Presbytery of Kirkcaldy",
+        "synodLabel": "Synod of Fife"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.134150505,
+          56.204865989
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Traquair",
+        "coords": "Point(-3.1 55.6)",
+        "partLabel": "Presbytery of Peebles",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1,
+          55.6
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Pettinain",
+        "coords": "Point(-3.66402626 55.668993255)",
+        "partLabel": "Presbytery of Lanark",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.66402626,
+          55.668993255
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Pencaitland",
+        "coords": "Point(-2.89 55.91)",
+        "partLabel": "Presbytery of Dalkeith",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.89,
+          55.91
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Kirkliston",
+        "coords": "Point(-3.4 55.956111111)",
+        "partLabel": "Presbytery of Linlithgow",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.4,
+          55.956111111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Stobo",
+        "coords": "Point(-3.297777777 55.625)",
+        "partLabel": "Presbytery of Peebles",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.297777777,
+          55.625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Pencaitland",
+        "coords": "Point(-2.89 55.91)",
+        "partLabel": "Presbytery of Haddington",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.89,
+          55.91
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "West Calder",
+        "coords": "Point(-3.568888888 55.851944444)",
+        "partLabel": "Presbytery of Edinburgh",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.568888888,
+          55.851944444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Yester",
+        "coords": "Point(-2.742843055 55.890881944)",
+        "partLabel": "Presbytery of Haddington",
+        "synodLabel": "Synod of Lothian and Tweeddale"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.742843055,
+          55.890881944
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Bothwell",
+        "coords": "Point(-4.069211483 55.803632717)",
+        "partLabel": "Presbytery of Hamilton",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.069211483,
+          55.803632717
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "parishLabel": "Roberton",
+        "coords": "Point(-3.678660392 55.540057233)",
+        "partLabel": "Presbytery of Lanark",
+        "synodLabel": "Synod of Glasgow and Ayr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.678660392,
+          55.540057233
+        ]
+      }
+    }
+  ]
+};
+
+function createPopup(feature, layer) {
+  layer.setIcon(kirkIcon);
+  layer.bindPopup('<b>'+feature.properties.parishLabel +'</b><br>'+ feature.properties.partLabel +'<br> '+feature.properties.synodLabel);
+};
+
+ L.geoJSON(geojson, {
+    onEachFeature: createPopup
+  }).addTo(map);
+
+  </script>
+
+  </body>
+  </html>
